@@ -57,6 +57,15 @@ class Todo {
     this._generateDate();
     return this._todoElement;
   }
+
+  generateTodo = (data) => {
+    const todo = new Todo(data, "#todo-template", {
+      onUpdateCompleted: (isCompleted) =>
+        todoCounter.updateCompleted(isCompleted),
+      onUpdateTotal: (isAdding) => todoCounter.updateTotal(isAdding),
+    });
+    return todo.getView();
+  };
 }
 
 export default Todo;
