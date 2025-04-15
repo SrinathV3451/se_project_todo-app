@@ -19,13 +19,13 @@ const closeModal = (modal) => {
 };
 
 const generateTodo = (data) => {
-  /* const todo = new Todo(data, "#todo-template", {
+  const todo = new Todo(data, "#todo-template", {
     onUpdateCompleted: (isCompleted) =>
       todoCounter.updateCompleted(isCompleted),
     onUpdateTotal: (isAdding) => todoCounter.updateTotal(isAdding),
   });
   return todo.getView();
-*/
+
   const todoElement = todoTemplate.content
     .querySelector(".todo")
     .cloneNode(true);
