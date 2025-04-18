@@ -19,16 +19,9 @@ const closeModal = (modal) => {
 };
 
 const generateTodo = (data) => {
-  const todo = new Todo(data, "#todo-template", {
-    onUpdateCompleted: (isCompleted) =>
-      todoCounter.updateCompleted(isCompleted),
-    onUpdateTotal: (isAdding) => todoCounter.updateTotal(isAdding),
-  });
-  return todo.getView();
+  const todo = new Todo(data, "#todo-template");
 
-  const todoElement = todoTemplate.content
-    .querySelector(".todo")
-    .cloneNode(true);
+  const todoElement = todoTemplate.content;
   const todoNameEl = todoElement.querySelector(".todo__name");
   const todoCheckboxEl = todoElement.querySelector(".todo__completed");
   const todoLabel = todoElement.querySelector(".todo__label");
@@ -57,11 +50,10 @@ const generateTodo = (data) => {
     todoElement.remove();
   });
 
-  return todoElement;
+  return todo.getView();
 };
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
-newTodoValidator.enableValidation();
 
 addTodoButton.addEventListener("click", () => {
   openModal(addToDoPopup);
@@ -80,9 +72,9 @@ addTodoForm.addEventListener("submit", (evt) => {
   const date = new Date(dateInput);
   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 
-  const values = { name, date };
-  const todo = generateTodo(values);
-  todosList.append(todo);
+  const id = uuidv4();
+  const values = { name, date, id };
+  renderTodo(values);
   closeModal(addToDoPopup);
 });
 
@@ -90,3 +82,10 @@ initialTodos.forEach((item) => {
   const todo = generateTodo(item);
   todosList.append(todo);
 });
+
+const renderTodo = (item) => {
+  const todo = generateTodo(item);
+  todosList.append(todo);
+};
+
+newTodoValidator.enableValidation();

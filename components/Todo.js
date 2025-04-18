@@ -1,5 +1,5 @@
 class Todo {
-  constructor(data, selector, { onUpdateCompleted, onUpdateTotal }) {
+  constructor(data, selector) {
     this._data = data;
     this._templateElement = document.querySelector(selector);
   }
@@ -42,9 +42,9 @@ class Todo {
     this._todoElement = this._templateElement.content
       .querySelector(".todo")
       .cloneNode(true);
-    const todoNameEl = this._todoElement.querySelector(".todo__name");
+    this._todoNameEl = this._todoElement.querySelector(".todo__name");
     this._todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
-    todoNameEl.textContent = this._data.name;
+    this._todoNameEl.textContent = this._data.name;
     this._generateCheckBoxEl();
     this._setEventListeners();
     this._generateDate();
