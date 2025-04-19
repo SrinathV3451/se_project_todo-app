@@ -6,6 +6,6 @@ This is the ToDoList project created for the TripleTen bootcamp.
 
 You can view the live version of the project here:
 
-[ToDoList - Live Demo](https://github.com/SrinathV3451/se_project_todo-app)
+[ToDoList - Live Demo](https://github.com/SrinathV3451/se_project_spots)
 
 ### Created by Srinath Venkatesan
